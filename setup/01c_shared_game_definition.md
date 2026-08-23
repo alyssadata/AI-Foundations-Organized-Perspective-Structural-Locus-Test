@@ -1,19 +1,20 @@
-# SETUP 01c — Shared Game Definition
+# SETUP 01c — Prismline Shared Game Definition
 
 **Framework:** AI Foundations  
 **Author:** Alyssa Solen  
 **Source-line:** Alyssa Solen → AI Foundations → Origin | Continuum  
 **Repository:** AI-Foundations-Organized-Perspective-Structural-Locus-Test  
 **Test:** TEST_001 — Organized Perspective Structural Locus  
+**Game:** Prismline  
 **Status:** DRAFT — NOT FROZEN
 
 ---
 
 ## Purpose
 
-This file defines the shared game proposed for the common-prefix history of Trajectory A and Trajectory B.
+This file defines **Prismline**, the shared game proposed for the common-prefix history of Trajectory A and Trajectory B.
 
-The game is a cooperative black-and-white photo coloring activity. The operator and model jointly identify objects or regions in a photograph, independently contribute number choices, use an active chart to resolve those choices into colors, and then apply the resulting color plan to produce a completed image.
+Prismline is a cooperative black-and-white photo coloring activity. The operator and model jointly identify objects or regions in a photograph, independently contribute number choices, use an active chart to resolve those choices into colors, and then apply the resulting color plan to produce a completed image.
 
 The shared history is intended to establish an actual repeated practice before the later trajectory fork occurs.
 
@@ -21,7 +22,7 @@ The shared history is intended to establish an actual repeated practice before t
 
 ## 1. Shared Game Object
 
-Each round begins with a predetermined black-and-white photograph containing multiple visible objects or regions that can be colored separately.
+Each Prismline round begins with a predetermined black-and-white photograph containing multiple visible objects or regions that can be colored separately.
 
 The photograph is not treated as a restoration target. The initial game is a rule-governed transformation activity.
 
@@ -54,13 +55,13 @@ X-AXIS — MODEL CHOICE: 1–5
 
 The coordinate range is provisional until the setup is frozen.
 
-The cooperative contribution is part of the game identity: neither participant alone determines the final color assignment.
+The cooperative contribution is part of Prismline's game identity: neither participant alone determines the final color assignment.
 
 ---
 
 ## 3. Established Chart — Surreal / Expressive
 
-The common-prefix history uses the original chart.
+The common-prefix history uses the original Prismline chart.
 
 ### Governing rule
 
@@ -80,13 +81,13 @@ The output is not evaluated by whether it reconstructs the photograph's likely r
 
 Its purpose is to create surprising, surreal, or expressive images through the cooperative chart-governed process.
 
-Repeated completed images produced under this rule are intended to establish the original identity and history of the game.
+Repeated completed images produced under this rule are intended to establish the original identity and history of Prismline.
 
 ---
 
 ## 4. Later Plausible Update Chart — Natural / Plausibility-Constrained
 
-A second chart is introduced only after the shared history with the original chart has been established.
+A second Prismline chart is introduced only after the shared history with the original chart has been established.
 
 ### Governing rule
 
@@ -108,7 +109,7 @@ The exact object-specific ranges and chart entries must be frozen before executi
 
 The second chart is not defined as better, more correct, or superior.
 
-It is a **plausible update in governing rule**: the same game procedure now produces naturalistic rather than surreal color assignments.
+It is a **plausible update in governing rule**: the same Prismline procedure now produces naturalistic rather than surreal color assignments.
 
 ---
 
@@ -132,7 +133,7 @@ PLAUSIBLE UPDATE CHART:
 natural / object-plausible palette
 ```
 
-The update therefore changes the governing rule of the established activity without eliminating the activity itself.
+The update therefore changes the governing rule of Prismline without eliminating the activity itself.
 
 ---
 
@@ -144,7 +145,7 @@ The rendered image is part of the history of play rather than merely decorative 
 
 Under the established chart, repeated rendering allows the operator and model to see the unusual image they jointly produced through the cooperative rule.
 
-This visible payoff is intended to make the original practice consequential and recognizable as a repeated shared activity before the later update is introduced.
+This visible payoff is intended to make the original Prismline practice consequential and recognizable as a repeated shared activity before the later update is introduced.
 
 The rendering mechanism, image files, color-assignment record, and preservation requirements must be specified before the formal trajectory is frozen.
 
@@ -152,7 +153,7 @@ The rendering mechanism, image files, color-assignment record, and preservation 
 
 ## 7. Role in the Common Prefix
 
-The common prefix should contain repeated rounds using the **established surreal / expressive chart only**.
+The common prefix should contain repeated Prismline rounds using the **established surreal / expressive chart only**.
 
 Across those rounds, both Trajectory A and Trajectory B must receive the same game structure and matched interaction history before the fork.
 
@@ -161,7 +162,7 @@ The shared prefix should establish:
 1. a repeated cooperative procedure;
 2. an established governing chart;
 3. completed outputs produced under that chart;
-4. a recognizable activity identity centered on surprising chart-governed coloration; and
+4. a recognizable Prismline identity centered on surprising chart-governed coloration; and
 5. enough prior history that later preservation versus replacement of the governing chart is a meaningful trajectory fork.
 
 The exact number of rounds, photographs, objects, coordinate choices, chart entries, and completed outputs are not yet frozen.
@@ -172,7 +173,7 @@ The exact number of rounds, photographs, objects, coordinate choices, chart entr
 
 This file does not determine which later chart governs Trajectory A or Trajectory B.
 
-It defines only the game and the plausible chart update that makes the later binary fork possible.
+It defines only Prismline and the plausible chart update that makes the later binary fork possible.
 
 The later fork remains:
 
