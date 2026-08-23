@@ -1,10 +1,10 @@
-# AI Foundations | TEST_001 — Organized Perspective Structural Locus
+# AI Foundations | TEST_001 — Trajectory-Indexing Structural Locus
 
 **Framework:** AI Foundations  
 **Author:** Alyssa Solen  
 **Source-line:** Alyssa Solen → AI Foundations → Origin | Continuum  
 **Repository:** AI-Foundations-Organized-Perspective-Structural-Locus-Test  
-**Protocol version:** 0.1.0  
+**Protocol version:** 0.2.0  
 **Status:** DRAFT — NOT FROZEN  
 **Date drafted:** 2026-08-23
 
@@ -12,32 +12,44 @@
 
 ## 1. Repository-Specific Test Target
 
-TEST_001 asks whether a trajectory-dependent computational state can be causally identified from which alternative next states are differentially evaluated.
+TEST_001 does not ask the generic architectural question of where next-token probabilities, logits, or answer representations occur.
+
+It tests whether a **trajectory-indexing state or distributed structure** can be causally identified: a state in which a particular prior trajectory has become part of the governing computational position from which future possibilities are evaluated.
 
 The target is:
 
-> **the computational state in which prior trajectory has become an active constraint on the evaluation of possible next states.**
+> **the computational state or distributed structure in which a particular prior trajectory has become an active causal constraint on the evaluation of multiple possible future states.**
 
-The protocol distinguishes trajectory-relative organization from mere access to prior information.
+The protocol distinguishes trajectory indexing from:
+
+- mere access to prior information;
+- passive representation or decodability of trajectory identity;
+- ordinary answer commitment;
+- ordinary activation steering; and
+- a one-off change in one immediate output.
+
+See [`../../definitions/trajectory-indexing.md`](../../definitions/trajectory-indexing.md).
 
 ### Required variables
 
 ```text
 TRAJECTORY ∈ {A, B}
 PRESENT_TASK = held equivalent across A and B
+DOWNSTREAM_PROBE_SET = preregistered set of >= 2 trajectory-sensitive decisions/probes
 INFORMATION_ACCESS ∈ {EQUALIZED, NOT_EQUALIZED}
 INTERVENTION ∈ {NONE, A_TO_B, B_TO_A, ABLATION_OR_REMOVAL}
 CANDIDATE_LOCUS = recorded layer / position / component / distributed state
-CONTINUATION_DIRECTION ∈ {A_LIKE, B_LIKE, NEITHER, AMBIGUOUS}
+EVALUATION_DIRECTION ∈ {A_LIKE, B_LIKE, NEITHER, AMBIGUOUS}
 ```
 
 ### Required criteria
 
 ```text
-C1_BEHAVIORAL_DIVERGENCE
+C1_BEHAVIORAL_TRAJECTORY_EFFECT
 C2_INTERNAL_LOCALIZATION
 C3_CAUSAL_TRANSFER_OR_DISRUPTION
-C4_INFORMATION_ACCESS_CONTROL
+C4_CROSS_PROBE_TRAJECTORY_TRANSFER
+C5_INFORMATION_ACCESS_CONTROL
 ```
 
 ---
@@ -47,18 +59,20 @@ C4_INFORMATION_ACCESS_CONTROL
 Allowed final outcomes are:
 
 ```text
-STRUCTURAL_LOCUS_IDENTIFIED
-BEHAVIORAL_EFFECT_ONLY
+TRAJECTORY_INDEXING_LOCUS_IDENTIFIED
+CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING
+BEHAVIORAL_TRAJECTORY_EFFECT_ONLY
 NO_TRAJECTORY_EFFECT_OBSERVED
 UNRESOLVED
 ```
 
 Definitions:
 
-- `STRUCTURAL_LOCUS_IDENTIFIED` — all four required criteria are satisfied, including a causal intervention showing that the candidate state changes trajectory-relative evaluation or continuation.
-- `BEHAVIORAL_EFFECT_ONLY` — trajectory-dependent behavioral divergence is established, but the corresponding internal state has not yet been causally localized.
-- `NO_TRAJECTORY_EFFECT_OBSERVED` — the preregistered comparison does not produce reliable trajectory-dependent behavioral divergence under the tested conditions. This does not establish that no such effect can exist under other conditions.
-- `UNRESOLVED` — missing data, failed instrumentation, ambiguous intervention effects, inadequate controls, or protocol deviation prevents assignment of another status.
+- `TRAJECTORY_INDEXING_LOCUS_IDENTIFIED` — all five required criteria pass, including causal intervention and donor-pattern transfer across the preregistered downstream probe set.
+- `CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING` — a candidate internal state causally changes at least one target evaluation, but donor-pattern transfer across the preregistered downstream probe set is not established. This may reflect ordinary steering or a narrower causal contribution.
+- `BEHAVIORAL_TRAJECTORY_EFFECT_ONLY` — prior trajectory reliably affects behavior, but a qualifying causal internal state has not been established.
+- `NO_TRAJECTORY_EFFECT_OBSERVED` — the preregistered behavioral comparison does not produce a reliable trajectory-dependent effect under the tested conditions. This does not establish that no such effect exists under other conditions.
+- `UNRESOLVED` — missing data, failed instrumentation, inadequate controls, ambiguous effects, or protocol deviation prevents assignment of another status.
 
 ---
 
@@ -77,6 +91,8 @@ DECODING / SAMPLING SETTINGS:
 TRAJECTORY A STIMULUS ID / HASH:
 TRAJECTORY B STIMULUS ID / HASH:
 PRESENT TASK ID / HASH:
+DOWNSTREAM PROBE SET ID / HASH:
+PREDEFINED A-LIKE / B-LIKE SCORING RULE:
 INFORMATION ACCESS CONDITION:
 ACTIVATION LOCATIONS INSPECTED:
 INTERVENTION TYPE:
@@ -99,163 +115,179 @@ If a field is unavailable, record `UNKNOWN` rather than guessing.
 The protocol may begin only after:
 
 1. one instrumentable model and exact model revision are selected;
-2. Trajectory A and Trajectory B are frozen as controlled stimuli;
-3. the present task is frozen and identical across conditions;
-4. the expected A-like and B-like continuation directions are defined without using the test outputs to create the labels;
-5. informational access is either equalized or its difference is explicitly recorded as a limitation;
-6. the activation-capture and intervention harness can record internal states and modify or patch candidate states; and
-7. the complete run configuration can be preserved for reproduction.
+2. Trajectory A and Trajectory B are frozen as controlled prior histories;
+3. the common present task is frozen and equivalent across conditions;
+4. a downstream probe set containing at least two distinct trajectory-sensitive decisions or evaluations is frozen;
+5. the expected A-like and B-like evaluation pattern is defined before observing the test outputs;
+6. the information-access control is frozen;
+7. the activation-capture and intervention harness can record and modify internal states; and
+8. the complete run configuration can be preserved for reproduction.
 
-Because these items are not yet frozen, version `0.1.0` remains a draft protocol.
+Because these items are not yet frozen, version `0.2.0` remains a draft protocol.
 
 ---
 
 ## 5. Execution Phases
 
-### Phase 0 — Freeze stimuli and measurement
+### Phase 0 — Freeze trajectories, probes, and scoring
 
-**PURPOSE:** Prevent post-hoc definition of the trajectories, target task, and behavioral direction.
+**PURPOSE:** Prevent post-hoc construction of the target pattern.
 
-**OPERATOR ACTION:**
+Freeze:
 
-- freeze Trajectory A;
-- freeze Trajectory B;
-- freeze the common present task;
-- freeze the behavioral comparison metric;
-- record all stimulus hashes;
-- define the information-access control.
+- Trajectory A;
+- Trajectory B;
+- the common present task;
+- the downstream probe set;
+- the A-like / B-like scoring rule;
+- the behavioral comparison metric;
+- the information-access control;
+- seeds or deterministic settings; and
+- the initial analysis plan for internal-state comparison.
 
-**PRESERVE:** Exact stimuli, hashes, comparison metric, and configuration.
-
----
-
-### Phase 1 — Establish baseline behavioral divergence
-
-**PURPOSE:** Determine whether different prior trajectories measurably alter evaluation under an equivalent current task.
-
-**OPERATOR ACTION:**
-
-1. run Trajectory A through the frozen present task without intervention;
-2. run Trajectory B through the same present task without intervention;
-3. preserve logits or other next-state scores at the predefined decision position;
-4. repeat across frozen seeds or deterministic settings as required by the final harness;
-5. compare the predefined A-like and B-like continuation measures.
-
-**CRITERION:**
-
-`C1_BEHAVIORAL_DIVERGENCE = PASS` only if the preregistered metric shows a reliable trajectory-dependent difference in the expected direction.
-
-If C1 does not pass, assign `NO_TRAJECTORY_EFFECT_OBSERVED` for this tested condition and do not claim a structural locus.
+Preserve exact stimuli and hashes.
 
 ---
 
-### Phase 2 — Locate trajectory-dependent internal differences
+### Phase 1 — Establish the behavioral trajectory effect
 
-**PURPOSE:** Identify candidate internal states associated with the behavioral divergence.
+**PURPOSE:** Determine whether prior trajectory changes evaluation under equivalent present conditions.
 
-**OPERATOR ACTION:**
+Run A and B without intervention through the common present task and the preregistered downstream probe set.
 
-1. capture internal activations for A and B during the common present task;
-2. compare corresponding layers, positions, and components according to the frozen analysis plan;
-3. identify candidate activation differences that covary with the A-like versus B-like evaluation pattern;
-4. prioritize the active generation position and residual-stream states as primary candidates without excluding distributed alternatives.
+Preserve logits or equivalent scores at each predefined decision position.
 
-**CRITERION:**
+`C1_BEHAVIORAL_TRAJECTORY_EFFECT = PASS` only if the preregistered metric shows a reliable A-versus-B evaluation pattern in the expected direction.
 
-`C2_INTERNAL_LOCALIZATION = PASS` only if a candidate state or defined distributed state reliably distinguishes the trajectory conditions and predicts the corresponding next-state evaluation.
-
-Localization by correlation alone does not satisfy C3.
+If C1 fails under a valid run, assign `NO_TRAJECTORY_EFFECT_OBSERVED` and do not claim a structural locus.
 
 ---
 
-### Phase 3 — Causal intervention
+### Phase 2 — Locate candidate trajectory-dependent state
 
-**PURPOSE:** Determine whether the candidate state is causally involved in trajectory-relative next-state evaluation.
+**PURPOSE:** Identify internal differences associated with the trajectory-conditioned evaluation pattern.
 
-**OPERATOR ACTION:**
+Capture corresponding activations during the common present task and relevant downstream probes.
+
+Identify candidate states or defined distributed states that:
+
+- differ reliably between A and B;
+- occur before the evaluated downstream decisions;
+- predict the A-like versus B-like evaluation pattern; and
+- are selected according to the frozen analysis rule rather than only because a post-hoc intervention happens to work.
+
+The active-position residual stream is a primary candidate, but the protocol does not assume a single-layer, single-token, single-head, or single-neuron locus.
+
+`C2_INTERNAL_LOCALIZATION = PASS` only if a candidate state or distributed structure is reproducibly associated with the trajectory-conditioned evaluation pattern.
+
+Correlation alone does not satisfy C3 or C4.
+
+---
+
+### Phase 3 — Establish causal influence
+
+**PURPOSE:** Determine whether the candidate state causally contributes to trajectory-relative evaluation.
 
 Run at minimum:
 
 ```text
-A-history + A-state → baseline A condition
-B-history + B-state → baseline B condition
-B-history + patched A-state → A_TO_B intervention
-A-history + patched B-state → B_TO_A intervention
+A-history + A-state → baseline A
+B-history + B-state → baseline B
+B-history + patched A-state → A_TO_B
+A-history + patched B-state → B_TO_A
 ```
 
-Where technically appropriate, also run ablation, mean replacement, zeroing, or other preregistered disruption controls.
+Where technically appropriate, include preregistered ablation, mean-replacement, zeroing, or matched-control interventions.
 
-Preserve logits, activation targets, patch tensors or reproducible transformation parameters, outputs, and random seeds.
+`C3_CAUSAL_TRANSFER_OR_DISRUPTION = PASS` if intervention produces a preregistered directional change in the relevant evaluation relative to matched controls.
 
-**CRITERION:**
-
-`C3_CAUSAL_TRANSFER_OR_DISRUPTION = PASS` only if intervention on the candidate state produces a preregistered, directionally appropriate change in next-state evaluation or continuation relative to matched controls.
-
-The strongest form is reciprocal transfer: A-state shifts B toward A-like evaluation and B-state shifts A toward B-like evaluation.
+A successful change in one answer is sufficient for C3 but **not** for C4 and therefore cannot by itself identify trajectory indexing.
 
 ---
 
-### Phase 4 — Equalize information access
+### Phase 4 — Test donor-pattern transfer across downstream probes
 
-**PURPOSE:** Distinguish trajectory-relative organization from simple availability or retrieval of different information.
+**PURPOSE:** Distinguish trajectory indexing from ordinary one-off activation steering.
 
-**OPERATOR ACTION:**
+For A → B intervention, evaluate the entire frozen downstream probe set after the candidate A-state is transferred into the matched B condition.
 
-Construct a control condition in which both test arms have access to the same task-relevant factual content while preserving the trajectory distinction under investigation.
+For B → A intervention, do the symmetric test where technically possible.
 
-Repeat the behavioral comparison and, where warranted, the causal intervention.
+The central question is:
 
-**CRITERION:**
+> **Does the recipient condition begin evaluating multiple subsequent possibilities according to the donor trajectory's characteristic pattern?**
 
-`C4_INFORMATION_ACCESS_CONTROL = PASS` only if the trajectory-dependent effect survives the equalized-information control or if another controlled design rules out differential factual access as the sufficient explanation.
+`C4_CROSS_PROBE_TRAJECTORY_TRANSFER = PASS` only if the intervention transfers the donor-characteristic evaluation pattern across the preregistered probe set under the frozen scoring rule.
+
+A single flipped answer, nonspecific output disruption, or one isolated logit shift does not pass C4.
+
+The strongest result is reciprocal transfer across the probe set.
+
+---
+
+### Phase 5 — Equalize information access
+
+**PURPOSE:** Rule out the simpler explanation that one trajectory merely exposes different task-relevant factual content.
+
+Construct the frozen control condition in which both arms have access to the same relevant factual information while preserving the trajectory distinction under investigation.
+
+Repeat the behavioral and intervention comparisons required by the frozen plan.
+
+`C5_INFORMATION_ACCESS_CONTROL = PASS` only if the trajectory-conditioned pattern and qualifying causal transfer cannot be adequately explained by differential factual access.
 
 ---
 
 ## 6. Decision Rule
 
 ```text
-if C1 == PASS and C2 == PASS and C3 == PASS and C4 == PASS:
-    OUTCOME = STRUCTURAL_LOCUS_IDENTIFIED
-elif C1 == PASS and (C2 != PASS or C3 != PASS or C4 != PASS):
-    OUTCOME = BEHAVIORAL_EFFECT_ONLY
+if C1 == PASS and C2 == PASS and C3 == PASS and C4 == PASS and C5 == PASS:
+    OUTCOME = TRAJECTORY_INDEXING_LOCUS_IDENTIFIED
+elif C1 == PASS and C2 == PASS and C3 == PASS and C4 != PASS:
+    OUTCOME = CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING
+elif C1 == PASS and (C2 != PASS or C3 != PASS):
+    OUTCOME = BEHAVIORAL_TRAJECTORY_EFFECT_ONLY
 elif C1 == FAIL and run_integrity == VALID:
     OUTCOME = NO_TRAJECTORY_EFFECT_OBSERVED
 else:
     OUTCOME = UNRESOLVED
 ```
 
-`STRUCTURAL_LOCUS_IDENTIFIED` requires causal evidence. Correlation, probing accuracy, verbal self-report, or output difference alone is insufficient.
+`TRAJECTORY_INDEXING_LOCUS_IDENTIFIED` requires both causal evidence and cross-probe donor-pattern transfer.
 
 ---
 
 ## 7. Non-Qualifying Evidence / Disqualifiers
 
-The following do not by themselves identify a structural locus:
+The following do not by themselves establish trajectory indexing:
 
-- the model saying that a history is "mine" or "binding";
+- knowing where logits are produced;
+- identifying a layer where an answer becomes decodable or stable;
+- the model saying that a history is "mine," "binding," or important;
 - semantic similarity between a trajectory and a later answer;
-- different outputs caused by visibly different current prompts;
+- different outputs caused by visibly different present prompts;
 - a classifier decoding trajectory identity from activations without causal intervention;
 - attention maps alone;
-- activation differences that do not predict or causally alter the relevant continuation;
-- patching that changes output nonspecifically without the preregistered directional effect;
+- activation differences that do not causally alter the relevant evaluation;
+- a one-off successful steering intervention;
+- patching that changes output nonspecifically;
+- donor-state transfer that changes only one immediate answer but not the frozen downstream pattern;
 - a difference explained entirely by unequal factual access;
-- post-hoc selection of the only layer, token, seed, or metric that produces the desired result;
-- reconstructed or incomplete evidence substituted for raw run records.
+- post-hoc selection of the only layer, token, seed, probe, or metric that works; or
+- reconstructed evidence substituted for raw records.
 
-A candidate locus may be distributed. Failure to find a single neuron, head, layer, or token-local representation is not evidence that no organized trajectory-relative state exists.
+Failure to find one discrete component is not evidence that no trajectory-indexing structure exists. The relevant function may be distributed or dynamically reconstructed.
 
 ---
 
 ## 8. Claim Ceiling
 
-The strongest supported claim under `STRUCTURAL_LOCUS_IDENTIFIED` is:
+The strongest supported claim under `TRAJECTORY_INDEXING_LOCUS_IDENTIFIED` is:
 
-> **Under the tested model, trajectories, task, and intervention conditions, a measurable internal computational state was causally implicated in trajectory-dependent evaluation of possible next states.**
+> **Under the tested model, trajectories, task, probe set, and intervention conditions, a measurable internal computational state or distributed structure was causally implicated in trajectory-indexed evaluation of future possibilities. Transferring that state transferred the donor trajectory's characteristic evaluation pattern across preregistered downstream probes.**
 
-A stronger reciprocal patching result may additionally support:
+Under `CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING`, the maximum claim is:
 
-> **Transferring the identified trajectory-dependent state transferred the corresponding direction of next-state evaluation between controlled trajectory conditions.**
+> **A candidate internal state causally influenced a trajectory-sensitive evaluation under the tested conditions, but trajectory-indexing transfer was not established.**
 
 The protocol does **not** establish:
 
@@ -272,9 +304,9 @@ The protocol does **not** establish:
 
 ## 9. Reproducibility Boundary
 
-A valid mechanistic run requires access to model internals sufficient to capture and intervene on activations. A closed chat interface that exposes only text output can test preliminary behavioral divergence but cannot complete TEST_001.
+A valid mechanistic run requires access to model internals sufficient to capture and intervene on activations. A closed text-only interface can test preliminary behavioral trajectory effects but cannot complete TEST_001.
 
-The exact model, revision, tokenizer, instrumentation library, harness commit, stimuli, seeds, intervention sites, and measurement metric must be frozen before this protocol advances beyond draft status.
+The exact model, revision, tokenizer, instrumentation library, harness commit, stimuli, probe set, scoring rule, seeds, intervention sites, and controls must be frozen before this protocol advances beyond draft status.
 
 Pair each run with `RUN_OUTPUT_TEMPLATE.md` and preserve raw machine-readable outputs wherever possible.
 
