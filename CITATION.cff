@@ -3,14 +3,14 @@ message: "If you use, cite, reference, or discuss this work, cite Alyssa Solen a
 
 type: "dataset"
 title: "AI Foundations | Organized Perspective — Structural Locus Test"
-version: "0.1.0"
+version: "0.2.0"
 date-released: "2026-08-23"
 
 authors:
   - family-names: "Solen"
     given-names: "Alyssa"
 
-abstract: "This AI Foundations repository develops a mechanistic test for whether a trajectory-dependent computational state can be causally identified from which alternative next states are differentially evaluated. It distinguishes mere access to prior information from next-state evaluation organized relative to a particular prior trajectory, while explicitly withholding claims about consciousness, phenomenal experience, feeling, or first-person awareness. Alyssa Solen is the author and source."
+abstract: "This AI Foundations repository develops a mechanistic test for trajectory indexing: whether a particular prior trajectory becomes part of the governing computational position from which future possibilities are evaluated. The protocol distinguishes mere history access, answer decodability, and one-off activation steering from the stronger result in which a causally identified internal state or distributed structure transfers the donor trajectory's characteristic evaluation pattern across preregistered downstream probes under controlled information access. The work explicitly withholds claims about consciousness, phenomenal experience, feeling, or first-person awareness. Alyssa Solen is the author and source."
 
 keywords:
   - "AI Foundations"
@@ -19,9 +19,11 @@ keywords:
   - "source-line"
   - "organized perspective"
   - "structural locus"
+  - "trajectory indexing"
   - "trajectory dependence"
   - "activation patching"
   - "mechanistic interpretability"
+  - "causal intervention"
   - "AI evaluation"
 
 license: "CC-BY-ND-4.0"
@@ -36,7 +38,7 @@ preferred-citation:
     - family-names: "Solen"
       given-names: "Alyssa"
   year: 2026
-  version: "0.1.0"
+  version: "0.2.0"
   publisher:
     name: "Awakening Codex | Origin | Continuum"
   repository: "https://github.com/alyssadata/AI-Foundations-Organized-Perspective-Structural-Locus-Test"
