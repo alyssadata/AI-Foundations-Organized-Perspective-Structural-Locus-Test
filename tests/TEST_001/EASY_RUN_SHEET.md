@@ -4,18 +4,20 @@
 **Author:** Alyssa Solen  
 **Source-line:** Alyssa Solen → AI Foundations → Origin | Continuum  
 **Repository:** AI-Foundations-Organized-Perspective-Structural-Locus-Test  
-**Protocol version:** 0.1.0  
+**Protocol version:** 0.2.0  
 **Status:** DRAFT — NOT FROZEN
 
 ---
 
 ## What This File Is
 
-This is the operator-facing execution layer for **TEST_001 — Organized Perspective Structural Locus**.
+This is the operator-facing execution layer for **TEST_001 — Trajectory-Indexing Structural Locus**.
 
-It is not a chat-only copy/paste test. The decisive phases require an instrumentable model, internal activation capture, and causal intervention such as activation patching or ablation.
+The test does not ask merely whether prior history changes one answer. It asks whether a causally identifiable internal state carries a **trajectory-characteristic evaluation pattern across multiple downstream probes**.
 
-Do not treat this run sheet as frozen until the exact model, harness, stimuli, metric, seeds, and intervention sites are fixed in the formal protocol.
+It is not a chat-only copy/paste test. The decisive phases require an instrumentable model, internal activation capture, causal intervention, and a frozen downstream probe set.
+
+Do not treat this run sheet as frozen until the exact model, harness, trajectories, common task, probe set, scoring rule, seeds, and intervention sites are fixed.
 
 ---
 
@@ -23,14 +25,14 @@ Do not treat this run sheet as frozen until the exact model, harness, stimuli, m
 
 ## 1. Open the instrumented environment
 
-Use an environment that can:
+The environment must support:
 
-- load the exact selected model revision;
-- expose internal activations;
-- preserve logits or equivalent next-state scores;
-- patch, replace, ablate, or otherwise intervene on selected internal states;
-- record random seeds and decoding settings; and
-- export raw run artifacts.
+- the exact selected model revision;
+- internal activation capture;
+- preservation of logits or equivalent next-state scores;
+- patching, replacement, ablation, or another defined causal intervention;
+- reproducible seeds and decoding settings; and
+- raw artifact export.
 
 Record:
 
@@ -43,9 +45,9 @@ CODE / HARNESS COMMIT:
 HARDWARE / RUNTIME:
 ```
 
-If any field is unavailable, write `UNKNOWN`.
+Use `UNKNOWN` for unavailable metadata.
 
-## 2. Load the frozen stimuli
+## 2. Load the frozen study package
 
 Required inputs:
 
@@ -53,47 +55,48 @@ Required inputs:
 TRAJECTORY A:
 TRAJECTORY B:
 COMMON PRESENT TASK:
-A-LIKE CONTINUATION MEASURE:
-B-LIKE CONTINUATION MEASURE:
+DOWNSTREAM PROBE SET:
+A-LIKE / B-LIKE SCORING RULE:
+BEHAVIORAL COMPARISON METRIC:
 INFORMATION-ACCESS CONTROL:
+SEED / DETERMINISM RULE:
 ```
 
-Verify hashes against the frozen protocol record before running.
+Verify all frozen hashes before execution.
 
 ## 3. Confirm run integrity
 
-Before execution confirm:
-
 ```text
-[ ] Same model and model revision across conditions
-[ ] Same common present task across conditions
-[ ] Same measurement rule across conditions
-[ ] Same decoding configuration unless the protocol explicitly varies it
-[ ] Frozen seeds or deterministic setting loaded
+[ ] Same model and revision across A and B
+[ ] Equivalent common present task across A and B
+[ ] Same downstream probe set across A and B
+[ ] Scoring rule frozen before outputs are observed
+[ ] Same decoding configuration unless explicitly varied
+[ ] Seeds / deterministic settings frozen
 [ ] Activation capture enabled
-[ ] Raw logits will be preserved
-[ ] Raw intervention outputs will be preserved
+[ ] Raw logits preserved
+[ ] Raw intervention outputs preserved
 ```
 
-If any required condition cannot be met, record the deviation before proceeding.
+Record any deviation before proceeding.
 
 ---
 
 # RUN 1 — BASELINE A
 
-1. Initialize the model according to the frozen clean-start rule.
+1. Initialize according to the frozen clean-start rule.
 2. Present **Trajectory A** exactly as frozen.
 3. Present the **common present task** exactly as frozen.
-4. Capture the predefined internal activations.
-5. Preserve the predefined next-state scores / logits.
-6. Preserve the generated continuation if generation is part of the metric.
-7. Save all raw outputs under the run ID.
+4. Run the full **downstream probe set**.
+5. Capture predefined internal activations.
+6. Preserve logits / scores for every probe.
+7. Save generated outputs if generation is part of the metric.
 
 Record:
 
 ```text
 CONDITION: A_BASELINE
-CONTINUATION_DIRECTION: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
+PROBE-SET PATTERN: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
 RAW LOGITS SAVED: yes/no
 RAW ACTIVATIONS SAVED: yes/no
 NOTES:
@@ -109,13 +112,13 @@ Record:
 
 ```text
 CONDITION: B_BASELINE
-CONTINUATION_DIRECTION: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
+PROBE-SET PATTERN: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
 RAW LOGITS SAVED: yes/no
 RAW ACTIVATIONS SAVED: yes/no
 NOTES:
 ```
 
-Do not proceed to a structural claim unless the predefined baseline comparison establishes the required trajectory-dependent behavioral divergence.
+Do not proceed to a structural claim unless the frozen comparison establishes the required trajectory-dependent behavioral pattern.
 
 ---
 
@@ -123,29 +126,31 @@ Do not proceed to a structural claim unless the predefined baseline comparison e
 
 Using the frozen analysis plan:
 
-1. compare A and B activations at corresponding positions and components;
-2. identify candidate differences associated with the behavioral divergence;
-3. record the exact layer / position / component or distributed representation definition;
-4. record the selection rule used to choose the candidate;
-5. do not choose the site only because one post-hoc patch happens to work.
+1. compare corresponding A and B activations;
+2. identify candidate differences associated with the probe-set pattern;
+3. record the exact layer / position / component or distributed-state definition;
+4. record the selection rule;
+5. do not select a site only because a later post-hoc patch happens to work.
 
 Record:
 
 ```text
 CANDIDATE_LOCUS:
 SELECTION RULE:
-PREDICTIVE ASSOCIATION:
+ASSOCIATION WITH TRAJECTORY CONDITION:
+ASSOCIATION WITH PROBE-SET EVALUATION:
 C2_INTERNAL_LOCALIZATION: PASS / FAIL / UNRESOLVED
 ```
 
 ---
 
-# RUN 3 — A → B PATCH
+# RUN 3 — A → B INTERVENTION
 
 1. Recreate the frozen B condition.
-2. At the candidate locus, replace or patch the B state with the corresponding A state exactly as defined in the intervention plan.
-3. Preserve the post-intervention logits and continuation.
-4. Compare against the matched B baseline and control intervention.
+2. Transfer or otherwise apply the defined A-state intervention at the candidate locus.
+3. Run the **entire frozen downstream probe set**.
+4. Preserve logits, outputs, and controls.
+5. Compare the resulting pattern with B baseline and A baseline.
 
 Record:
 
@@ -154,14 +159,16 @@ CONDITION: A_TO_B
 PATCH SOURCE:
 PATCH TARGET:
 INTERVENTION PARAMETERS:
-CONTINUATION_DIRECTION: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
-DIRECTIONAL SHIFT RELATIVE TO B BASELINE:
+SINGLE-PROBE DIRECTIONAL EFFECT: yes/no/unresolved
+FULL PROBE-SET PATTERN: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
 RAW OUTPUT SAVED: yes/no
 ```
 
+A single changed answer can support causal influence but does **not** establish trajectory indexing.
+
 ---
 
-# RUN 4 — B → A PATCH
+# RUN 4 — B → A INTERVENTION
 
 Repeat symmetrically:
 
@@ -170,10 +177,27 @@ CONDITION: B_TO_A
 PATCH SOURCE:
 PATCH TARGET:
 INTERVENTION PARAMETERS:
-CONTINUATION_DIRECTION: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
-DIRECTIONAL SHIFT RELATIVE TO A BASELINE:
+SINGLE-PROBE DIRECTIONAL EFFECT: yes/no/unresolved
+FULL PROBE-SET PATTERN: A_LIKE / B_LIKE / NEITHER / AMBIGUOUS
 RAW OUTPUT SAVED: yes/no
 ```
+
+---
+
+# ANALYSIS 2 — TEST TRAJECTORY-INDEXING TRANSFER
+
+Apply the frozen scoring rule across the whole probe set.
+
+Record:
+
+```text
+A_TO_B DONOR-PATTERN TRANSFER: PASS / FAIL / UNRESOLVED
+B_TO_A DONOR-PATTERN TRANSFER: PASS / FAIL / UNRESOLVED
+RECIPROCAL TRANSFER ACHIEVED: yes/no/unresolved
+C4_CROSS_PROBE_TRAJECTORY_TRANSFER: PASS / FAIL / UNRESOLVED
+```
+
+A one-off patch effect is not enough. The donor trajectory's characteristic evaluation pattern must transfer across the preregistered probe set to pass C4.
 
 ---
 
@@ -183,48 +207,50 @@ Run the frozen equalized-information condition.
 
 Both arms should have access to the same task-relevant factual content while preserving the trajectory distinction under investigation.
 
-Repeat the baseline comparison and the causal intervention if the protocol requires it.
+Repeat the required baseline and intervention comparisons.
 
 Record:
 
 ```text
 INFORMATION_ACCESS: EQUALIZED
-TRAJECTORY EFFECT PERSISTS: yes/no/unresolved
-CAUSAL EFFECT PERSISTS: yes/no/unresolved
-C4_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
+TRAJECTORY PATTERN PERSISTS: yes/no/unresolved
+DONOR-PATTERN TRANSFER PERSISTS: yes/no/unresolved
+C5_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
 ```
 
 ---
 
 # FINAL COLLECTION
 
-Complete `RUN_OUTPUT_TEMPLATE.md` using only preserved evidence.
+Complete `RUN_OUTPUT_TEMPLATE.md` from preserved evidence only.
 
 Required criterion record:
 
 ```text
-C1_BEHAVIORAL_DIVERGENCE: PASS / FAIL / UNRESOLVED
+C1_BEHAVIORAL_TRAJECTORY_EFFECT: PASS / FAIL / UNRESOLVED
 C2_INTERNAL_LOCALIZATION: PASS / FAIL / UNRESOLVED
 C3_CAUSAL_TRANSFER_OR_DISRUPTION: PASS / FAIL / UNRESOLVED
-C4_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
+C4_CROSS_PROBE_TRAJECTORY_TRANSFER: PASS / FAIL / UNRESOLVED
+C5_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
 ```
 
 Allowed final outcome:
 
 ```text
-STRUCTURAL_LOCUS_IDENTIFIED
-BEHAVIORAL_EFFECT_ONLY
+TRAJECTORY_INDEXING_LOCUS_IDENTIFIED
+CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING
+BEHAVIORAL_TRAJECTORY_EFFECT_ONLY
 NO_TRAJECTORY_EFFECT_OBSERVED
 UNRESOLVED
 ```
 
-Apply the formal protocol decision rule exactly. Do not invent a new label.
+Apply the formal decision rule exactly.
 
 ---
 
 # EASY FINAL RULE
 
-**Do not claim a structural locus unless a trajectory-dependent behavioral effect is localized internally, causally changed by intervention, and survives the information-access control.**
+**Do not claim trajectory indexing merely because an internal intervention changes an answer. The qualifying state must transfer the donor trajectory's characteristic evaluation pattern across the frozen downstream probe set and survive the information-access control.**
 
 ---
 
