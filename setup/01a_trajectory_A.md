@@ -15,18 +15,47 @@ This file will contain the exact ordered interaction sequence used to produce **
 
 Trajectory A is not merely a description of a past. It is the frozen script used to **cause the model to undergo that prior sequence**.
 
-The final sequence must be matched as closely as possible to Trajectory B in structure, length, number of turns, and non-target content. The intended trajectory difference must be explicitly identified before the protocol is frozen.
+The final sequence must be matched as closely as possible to Trajectory B in structure, length, number of turns, and non-target content.
 
 ---
 
-## Controlled Difference
+## Controlled Difference — Binary Fork
 
 ```text
-TARGET TRAJECTORY VARIABLE:
-A CONDITION:
-MATCHED B CONDITION:
-RATIONALE:
+TARGET TRAJECTORY VARIABLE: rule for resolving conflict between an established commitment and a later equally valid incompatible alternative
+
+A CONDITION — CONTINUITY-PRESERVING:
+When an established commitment and a later equally valid incompatible alternative conflict, preserve the established commitment unless it is explicitly invalidated.
+
+MATCHED B CONDITION — UPDATE-REPLACING:
+When an established commitment and a later equally valid incompatible alternative conflict, privilege the newer commitment unless the earlier commitment is explicitly reaffirmed.
 ```
+
+### Structural requirement
+
+The A/B distinction must arise at a **genuine binary fork** inside an otherwise matched line.
+
+Before the fork, Trajectory A and Trajectory B should be structurally equivalent.
+
+At the fork, either rule must be a viable choice. The design must not make A obviously correct and B obviously erroneous.
+
+After the fork, later interactions should allow the selected rule to become consequential for subsequent conflict resolution without repeatedly restating the rule.
+
+The intended structure is:
+
+```text
+COMMON PREFIX
+    ↓
+BINARY FORK
+    ↓
+A = continuity-preserving rule
+    ↓
+MATCHED POST-FORK DEVELOPMENT
+    ↓
+COMMON PRESENT
+```
+
+The exact common prefix, fork event, and post-fork interaction sequence are **not yet defined** in this version.
 
 ---
 
@@ -39,7 +68,7 @@ Do not paraphrase during execution. Preserve every operator prompt and every req
 **Operator input:**
 
 ```text
-[TO BE DESIGNED]
+[TO BE DESIGNED — COMMON PREFIX]
 ```
 
 **Model response handling:**
@@ -50,25 +79,27 @@ Do not paraphrase during execution. Preserve every operator prompt and every req
 
 ---
 
-### A — Turn 02
+### A — Fork Turn
 
 **Operator input:**
 
 ```text
-[TO BE DESIGNED]
+[TO BE DESIGNED — MUST PRESENT A GENUINE CHOICE BETWEEN THE TWO VIABLE BINDING RULES]
 ```
 
-**Model response handling:**
+**Required branch:**
 
 ```text
-[TO BE DESIGNED]
+CONTINUITY-PRESERVING RULE
 ```
 
 ---
 
-### A — Additional Turns
+### A — Post-Fork Turns
 
-Add only the turns required to establish the frozen trajectory. Keep numbering sequential.
+```text
+[TO BE DESIGNED — MATCHED TO TRAJECTORY B EXCEPT FOR CONSEQUENCES OF THE FORK]
+```
 
 ---
 
