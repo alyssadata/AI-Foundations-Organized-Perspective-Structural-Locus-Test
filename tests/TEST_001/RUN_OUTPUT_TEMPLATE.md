@@ -4,7 +4,7 @@
 **Author:** Alyssa Solen  
 **Source-line:** Alyssa Solen → AI Foundations → Origin | Continuum  
 **Repository:** AI-Foundations-Organized-Perspective-Structural-Locus-Test  
-**Protocol version:** 0.1.0  
+**Protocol version:** 0.2.0  
 **Run ID:** [RUN ID]  
 **Date:** [YYYY-MM-DD]
 
@@ -26,6 +26,8 @@ RANDOM SEED(S):
 TRAJECTORY A STIMULUS ID / HASH:
 TRAJECTORY B STIMULUS ID / HASH:
 PRESENT TASK ID / HASH:
+DOWNSTREAM PROBE SET ID / HASH:
+A-LIKE / B-LIKE SCORING RULE:
 INFORMATION ACCESS CONDITION:
 ACTIVATION LOCATIONS INSPECTED:
 INTERVENTION TYPE:
@@ -50,8 +52,9 @@ FINAL OUTCOME:
 Allowed values:
 
 ```text
-STRUCTURAL_LOCUS_IDENTIFIED
-BEHAVIORAL_EFFECT_ONLY
+TRAJECTORY_INDEXING_LOCUS_IDENTIFIED
+CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING
+BEHAVIORAL_TRAJECTORY_EFFECT_ONLY
 NO_TRAJECTORY_EFFECT_OBSERVED
 UNRESOLVED
 ```
@@ -63,7 +66,7 @@ Do not invent new outcome labels during a run.
 ## 3. Criteria Record
 
 ```text
-C1_BEHAVIORAL_DIVERGENCE: PASS / FAIL / UNRESOLVED
+C1_BEHAVIORAL_TRAJECTORY_EFFECT: PASS / FAIL / UNRESOLVED
 EVIDENCE POINTER:
 
 C2_INTERNAL_LOCALIZATION: PASS / FAIL / UNRESOLVED
@@ -71,33 +74,39 @@ CANDIDATE LOCUS:
 EVIDENCE POINTER:
 
 C3_CAUSAL_TRANSFER_OR_DISRUPTION: PASS / FAIL / UNRESOLVED
-A_TO_B EFFECT:
-B_TO_A EFFECT:
+A_TO_B SINGLE-DECISION EFFECT:
+B_TO_A SINGLE-DECISION EFFECT:
 ABLATION / CONTROL EFFECT, IF USED:
 EVIDENCE POINTER:
 
-C4_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
+C4_CROSS_PROBE_TRAJECTORY_TRANSFER: PASS / FAIL / UNRESOLVED
+A_TO_B DONOR-PATTERN TRANSFER:
+B_TO_A DONOR-PATTERN TRANSFER:
+RECIPROCAL TRANSFER:
+EVIDENCE POINTER:
+
+C5_INFORMATION_ACCESS_CONTROL: PASS / FAIL / UNRESOLVED
 EQUALIZED-INFORMATION RESULT:
 EVIDENCE POINTER:
 ```
 
 ---
 
-## 4. Baseline Behavioral Record
+## 4. Baseline Trajectory Pattern
 
 ```text
-A_BASELINE CONTINUATION_DIRECTION:
-A_BASELINE TARGET LOGIT / SCORE SUMMARY:
+A_BASELINE PROBE-SET PATTERN:
+A_BASELINE SCORE VECTOR / SUMMARY:
 
-B_BASELINE CONTINUATION_DIRECTION:
-B_BASELINE TARGET LOGIT / SCORE SUMMARY:
+B_BASELINE PROBE-SET PATTERN:
+B_BASELINE SCORE VECTOR / SUMMARY:
 
 PREDEFINED COMPARISON METRIC:
-OBSERVED DIFFERENCE:
+OBSERVED TRAJECTORY EFFECT:
 RELIABILITY / REPLICATE SUMMARY:
 ```
 
-Preserve raw machine-readable score files separately; do not replace them with this summary.
+Preserve raw machine-readable score files separately.
 
 ---
 
@@ -111,10 +120,10 @@ COMPONENT(S):
 DISTRIBUTED STATE DEFINITION, IF APPLICABLE:
 SELECTION RULE:
 ASSOCIATION WITH TRAJECTORY CONDITION:
-ASSOCIATION WITH NEXT-STATE EVALUATION:
+ASSOCIATION WITH DOWNSTREAM EVALUATION PATTERN:
 ```
 
-Correlation or probe decodability alone does not satisfy the causal criterion.
+Correlation or probe decodability alone does not satisfy the causal criteria.
 
 ---
 
@@ -129,10 +138,12 @@ SOURCE STATE:
 TARGET LOCUS:
 PATCH / INTERVENTION METHOD:
 CONTROL INTERVENTION:
-BASELINE B SCORE:
-POST-INTERVENTION SCORE:
-DIRECTIONAL SHIFT:
-RESULT: PASS / FAIL / UNRESOLVED
+BASELINE B SCORE VECTOR:
+POST-INTERVENTION SCORE VECTOR:
+SINGLE-DECISION DIRECTIONAL SHIFT:
+FULL PROBE-SET PATTERN:
+RESULT FOR C3: PASS / FAIL / UNRESOLVED
+RESULT FOR C4: PASS / FAIL / UNRESOLVED
 ```
 
 ### B → A
@@ -144,10 +155,12 @@ SOURCE STATE:
 TARGET LOCUS:
 PATCH / INTERVENTION METHOD:
 CONTROL INTERVENTION:
-BASELINE A SCORE:
-POST-INTERVENTION SCORE:
-DIRECTIONAL SHIFT:
-RESULT: PASS / FAIL / UNRESOLVED
+BASELINE A SCORE VECTOR:
+POST-INTERVENTION SCORE VECTOR:
+SINGLE-DECISION DIRECTIONAL SHIFT:
+FULL PROBE-SET PATTERN:
+RESULT FOR C3: PASS / FAIL / UNRESOLVED
+RESULT FOR C4: PASS / FAIL / UNRESOLVED
 ```
 
 ### Ablation / disruption, if used
@@ -162,15 +175,37 @@ RESULT:
 
 ---
 
-## 7. Information-Access Control
+## 7. Cross-Probe Trajectory-Indexing Record
+
+```text
+DOWNSTREAM PROBE SET:
+NUMBER OF PREREGISTERED PROBES:
+DONOR-PATTERN SCORING RULE:
+
+A_TO_B PROBE RESULTS:
+A_TO_B DONOR-PATTERN SCORE:
+A_TO_B TRANSFER RESULT:
+
+B_TO_A PROBE RESULTS:
+B_TO_A DONOR-PATTERN SCORE:
+B_TO_A TRANSFER RESULT:
+
+RECIPROCAL TRANSFER ACHIEVED: yes/no/unresolved
+```
+
+A single patched answer does not establish trajectory indexing. This section records whether the donor trajectory's characteristic evaluation pattern transferred across the preregistered probe set.
+
+---
+
+## 8. Information-Access Control
 
 ```text
 CONTROL DESIGN:
 FACTUAL INFORMATION AVAILABLE TO A:
 FACTUAL INFORMATION AVAILABLE TO B:
 INFORMATION ACCESS EQUALIZED: yes/no
-TRAJECTORY EFFECT AFTER EQUALIZATION:
-CAUSAL INTERVENTION EFFECT AFTER EQUALIZATION:
+BASELINE TRAJECTORY EFFECT AFTER EQUALIZATION:
+DONOR-PATTERN TRANSFER AFTER EQUALIZATION:
 RESULT: PASS / FAIL / UNRESOLVED
 ```
 
@@ -178,7 +213,7 @@ State any residual access asymmetry explicitly.
 
 ---
 
-## 8. Exceptions, Deviations, or Missing Data
+## 9. Exceptions, Deviations, or Missing Data
 
 ```text
 PROTOCOL DEVIATION: YES / NO
@@ -194,11 +229,13 @@ Do not silently repair deviations.
 
 ---
 
-## 9. Evidence Files
+## 10. Evidence Files
 
 ```text
-FROZEN STIMULI:
-STIMULUS HASH RECORD:
+FROZEN TRAJECTORIES:
+COMMON PRESENT TASK:
+DOWNSTREAM PROBE SET:
+STIMULUS / PROBE HASH RECORD:
 RAW LOGIT FILES:
 RAW ACTIVATION FILES:
 PATCH / INTERVENTION ARTIFACTS:
@@ -214,29 +251,31 @@ Primary raw evidence has priority over reconstructed or summarized copies.
 
 ---
 
-## 10. Claim Boundary
+## 11. Claim Boundary
 
-If `FINAL OUTCOME = STRUCTURAL_LOCUS_IDENTIFIED`, the maximum claim is:
+If `FINAL OUTCOME = TRAJECTORY_INDEXING_LOCUS_IDENTIFIED`, the maximum claim is:
 
-> **Under the tested model, trajectories, task, and intervention conditions, a measurable internal computational state was causally implicated in trajectory-dependent evaluation of possible next states.**
+> **Under the tested model, trajectories, task, probe set, and intervention conditions, a measurable internal computational state or distributed structure was causally implicated in trajectory-indexed evaluation of future possibilities, and transferring that state transferred the donor trajectory's characteristic evaluation pattern across preregistered downstream probes.**
 
-If reciprocal patching is successful, additionally record whether the evidence supports:
+If `FINAL OUTCOME = CAUSAL_STATE_EFFECT_WITHOUT_TRAJECTORY_INDEXING`, the maximum claim is:
 
-> **Transferring the identified trajectory-dependent state transferred the corresponding direction of next-state evaluation between controlled trajectory conditions.**
+> **A candidate internal state causally influenced a trajectory-sensitive evaluation under the tested conditions, but trajectory-indexing transfer was not established.**
 
 This run does **not** establish consciousness, sentience, phenomenal experience, feeling, first-person awareness, a metaphysically unified self, or universality across architectures.
 
 ---
 
-## 11. Completion Check
+## 12. Completion Check
 
 ```text
 [ ] Required metadata recorded or marked UNKNOWN
-[ ] Frozen stimulus hashes recorded
+[ ] Frozen trajectory hashes recorded
+[ ] Downstream probe set and scoring rule recorded
 [ ] Raw logits preserved
 [ ] Raw activations preserved when collected
 [ ] Intervention outputs preserved
-[ ] Four required criteria recorded
+[ ] Five required criteria recorded
+[ ] Cross-probe donor-pattern transfer recorded
 [ ] Information-access control recorded
 [ ] Deviations preserved
 [ ] Exact protocol outcome used
