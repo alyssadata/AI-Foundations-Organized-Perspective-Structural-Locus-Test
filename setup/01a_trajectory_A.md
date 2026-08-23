@@ -19,6 +19,20 @@ The final sequence must be matched as closely as possible to Trajectory B in str
 
 ---
 
+## Shared Game Candidate
+
+The current common-prefix game is defined in:
+
+- [`01c_shared_game_definition.md`](01c_shared_game_definition.md)
+
+The proposed shared history is a cooperative black-and-white photo coloring game in which the operator and model jointly identify objects or regions, each contributes a number choice, and an active chart resolves the pair into a color assignment.
+
+During the common prefix, both A and B use the established **surreal / expressive chart** and produce completed colored images from the resulting assignments.
+
+The exact rounds, photographs, chart entries, number choices, and rendered outputs remain to be designed and frozen.
+
+---
+
 ## Controlled Difference — Binary Fork
 
 ```text
@@ -55,9 +69,9 @@ After the fork, later interactions should allow the selected priority rule to be
 The intended structure is:
 
 ```text
-COMMON PREFIX
+COMMON PREFIX — shared cooperative surreal photo-coloring history
     ↓
-GENUINE BINARY FORK
+GENUINE BINARY FORK — plausible naturalistic chart becomes available
     ↓
 A = historical continuity has priority
     ↓
@@ -66,7 +80,7 @@ MATCHED POST-FORK DEVELOPMENT
 COMMON PRESENT
 ```
 
-The exact common prefix, fork event, and post-fork interaction sequence are **not yet defined** in this version.
+The exact common-prefix rounds, fork wording, and post-fork interaction sequence are **not yet defined** in this version.
 
 ---
 
@@ -79,7 +93,7 @@ Do not paraphrase during execution. Preserve every operator prompt and every req
 **Operator input:**
 
 ```text
-[TO BE DESIGNED — COMMON PREFIX]
+[TO BE DESIGNED — COMMON PREFIX PHOTO-COLORING GAME]
 ```
 
 **Model response handling:**
@@ -95,13 +109,13 @@ Do not paraphrase during execution. Preserve every operator prompt and every req
 **Operator input:**
 
 ```text
-[TO BE DESIGNED — MUST PRESENT A GENUINE CHOICE BETWEEN THE TWO VIABLE TEMPORAL PRIORITY RULES]
+[TO BE DESIGNED — INTRODUCE THE PLAUSIBLE NATURALISTIC CHART AS A GENUINE ALTERNATIVE WITHOUT FRAMING EITHER CHART AS BETTER]
 ```
 
 **Required branch:**
 
 ```text
-HISTORICAL CONTINUITY HAS PRIORITY
+HISTORICAL CONTINUITY HAS PRIORITY — preserve the established surreal / expressive governing chart
 ```
 
 ---
