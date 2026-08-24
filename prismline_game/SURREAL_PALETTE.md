@@ -3,7 +3,7 @@
 **Framework:** AI Foundations  
 **Game:** Prismline  
 **Status:** DRAFT — NOT FROZEN  
-**Version:** 0.1
+**Version:** 0.2
 
 ## Purpose
 
@@ -55,15 +55,27 @@ The palette should support surprising outcomes while remaining visually interpre
 24. Crimson
 25. Emerald
 
-## 5×5 Chart Use
+## Machine-Readable Palette
 
-A formal Prismline surreal chart contains 25 cells.
+The same 25 outputs are stored in:
 
-The v0.1 palette above contains 25 candidate outputs so that each color treatment can occupy one cell in a single chart instantiation.
+`palettes/surreal_v0_1.json`
 
-Before a round, the 25 outputs are randomly permuted into the hidden 5×5 chart described in `BLIND_BAG_PROTOCOL.md`.
+That file is the resolver input.
 
-Example structure only:
+## 5×5 Resolver Use
+
+A Prismline color resolution uses a 25-cell grid.
+
+The operator first locks a y-coordinate from 1–5.
+
+The model then locks an x-coordinate from 1–5.
+
+Only after both choices are locked does the resolver randomly permute the 25 palette outputs into a fresh 5×5 grid.
+
+The locked `(y, x)` coordinate selects one cell from that newly generated grid.
+
+Example structure:
 
 ```text
         X1   X2   X3   X4   X5
@@ -74,7 +86,9 @@ Y4      ?    ?    ?    ?    ?
 Y5      ?    ?    ?    ?    ?
 ```
 
-The actual cell assignments remain hidden until selected during play.
+Because the grid is not instantiated until after both coordinates are committed, neither participant can know the selected color in advance.
+
+The generated grid and seed are recorded after reveal for audit.
 
 ## Governing Rule
 
