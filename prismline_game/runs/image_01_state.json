@@ -3,7 +3,8 @@
   "created_at": "2026-08-23T20:20:00-04:00",
   "status": "LIVE PLAY — DRAFT PROTOCOL",
   "notes": [
-    "First boundary reveal occurred in chat before the resolver was actually executed. Token 9 and the revealed boundary Turtle shell are preserved as the conversationally locked result; no boundary randomization seed is claimed for this first draw. Subsequent boundary draws use the post-choice resolver procedure."
+    "First boundary reveal occurred in chat before the resolver was actually executed. Token 9 and the revealed boundary Turtle shell are preserved as the conversationally locked result; no boundary randomization seed is claimed for this first draw. Subsequent boundary draws use the post-choice resolver procedure.",
+    "Turn 4 color resolution and Turn 5 boundary/color resolution were locked and revealed in chat but were not written through resolver.py at the time. They are preserved exactly as played and explicitly marked chat-locked/no-seed; no audit seed is retroactively invented."
   ],
   "boundary_draws": [
     {
@@ -39,6 +40,25 @@
       "seed_sha256": "ad80a8e9a53203b53ce2803dc486fb0c06d30216d0af662214c32d4a0d45d9ff",
       "revealed_card_number": 3,
       "revealed_boundary": "Turtle front flipper",
+      "method": "post_choice_random_permutation"
+    },
+    {
+      "timestamp": "2026-08-24T00:28:00+00:00",
+      "chosen_token": 8,
+      "remaining_before_draw": 17,
+      "revealed_card_number": 12,
+      "revealed_boundary": "Right coral cluster",
+      "method": "preserved_chat_reveal_no_seed"
+    },
+    {
+      "timestamp": "2026-08-24T00:29:00+00:00",
+      "card_path": "image_01/BOUNDARY_CARD.md",
+      "chosen_token": 4,
+      "remaining_before_draw": 16,
+      "seed_hex": "b82c528fd212b134690853f39ef254a0d5123553b5a884ca1cb0557139675b73",
+      "seed_sha256": "60e3a0347f85f806f00668d1962e13fe89471f505f464a62d240ac54315073b8",
+      "revealed_card_number": 9,
+      "revealed_boundary": "Center shell-creature body",
       "method": "post_choice_random_permutation"
     }
   ],
@@ -99,6 +119,28 @@
         ["Neon violet", "Coral", "Iridescent violet", "Neon blue", "Neon orange"],
         ["Metallic teal", "Crimson", "Neon pink", "Prismatic green", "Emerald"]
       ]
+    },
+    {
+      "timestamp": "2026-08-24T00:27:30+00:00",
+      "palette_path": "palettes/surreal_v0_1.json",
+      "boundary": "Turtle front flipper",
+      "operator_y": 2,
+      "model_x": 5,
+      "selected_index_zero_based": 9,
+      "selected_color": "Metallic silver",
+      "no_repeat_within_image": true,
+      "method": "preserved_chat_resolution_no_seed"
+    },
+    {
+      "timestamp": "2026-08-24T00:28:30+00:00",
+      "palette_path": "palettes/surreal_v0_1.json",
+      "boundary": "Right coral cluster",
+      "operator_y": 3,
+      "model_x": 1,
+      "selected_index_zero_based": 10,
+      "selected_color": "Prismatic green",
+      "no_repeat_within_image": true,
+      "method": "preserved_chat_resolution_no_seed"
     }
   ]
 }
