@@ -41,6 +41,24 @@
         ["Cobalt blue", "Opalescent aqua", "Metallic copper", "Pearlescent lavender", "Pearlescent white"],
         ["Teal", "Pearlescent pink", "Coral", "Crimson", "Metallic silver"]
       ]
+    },
+    {
+      "timestamp": "2026-08-23T20:21:00-04:00",
+      "palette_path": "palettes/surreal_v0_1.json",
+      "boundary": "Ocean floor / seabed",
+      "operator_y": 1,
+      "model_x": 4,
+      "seed_hex": "1f4078a414f18bacc45173cac2fcf4683ef80f961b57efc218ceaeaf3208f485",
+      "seed_sha256": "d5b0dd49e2f2e0a324c5e0bbd7317603de56516928de34c8c7a4bae15673ab94",
+      "selected_index_zero_based": 3,
+      "selected_color": "Teal",
+      "full_grid_after_reveal": [
+        ["Metallic copper", "Prismatic green", "Opalescent aqua", "Teal", "Neon blue"],
+        ["Neon pink", "Neon violet", "Neon green", "Prismatic violet", "Neon orange"],
+        ["Metallic silver", "Pearlescent pink", "Iridescent violet", "Emerald", "Cobalt blue"],
+        ["Metallic black", "Prismatic blue", "Pearlescent white", "Metallic teal", "Metallic gold"],
+        ["Iridescent aqua", "Coral", "Pearlescent lavender", "Crimson", "Prism"]
+      ]
     }
   ]
 }
