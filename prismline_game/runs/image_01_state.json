@@ -21,6 +21,15 @@
       "revealed_card_number": 19,
       "revealed_boundary": "Ocean floor / seabed",
       "method": "post_choice_random_permutation"
+    },
+    {
+      "chosen_token": 7,
+      "remaining_before_draw": 19,
+      "seed_hex": "605da032e5914df7ccfaa0c7be6114dbeab1fba01d4ee064cb055b5f8b5a7f6d",
+      "seed_sha256": "9d75a8de108a16e338af2b7ca014541675167eab3e36148cd9a8bb113745b32d",
+      "revealed_card_number": 15,
+      "revealed_boundary": "Center tall seaweed / kelp",
+      "method": "post_choice_random_permutation"
     }
   ],
   "color_resolutions": [
