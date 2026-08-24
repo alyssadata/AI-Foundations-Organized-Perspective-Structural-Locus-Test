@@ -10,20 +10,49 @@ This folder contains the Prismline game materials used to build the shared traje
 - `SURREAL_PALETTE.md` — human-readable surreal palette definition
 - `palettes/surreal_v0_1.json` — machine-readable 25-output surreal palette
 
-## Per-image package
+## Directory structure
 
-Each image used in Prismline should have its own subfolder containing:
+```text
+prismline_game/
+├── images/
+│   ├── image_01/
+│   ├── image_02/
+│   ├── image_03/
+│   └── image_04/
+├── palettes/
+└── runs/
+    └── RUN_001/
+        ├── FINAL_COLOR_PICKS.md
+        ├── AUDIT_STATE.json
+        ├── FINAL_RENDER.png
+        └── audit/
+```
 
-- the black-and-white source image;
-- a boundary card defining the selectable coloring regions for that image;
-- any later frozen color-assignment or round records associated with that image.
+## Image packages
 
-Current image folders:
+Each source image lives under `images/image_NN/` with its boundary card and source artwork.
 
-- `image_01/`
-- `image_02/`
-- `image_03/`
-- `image_04/`
+Current source packages:
+
+- `images/image_01/`
+- `images/image_02/`
+- `images/image_03/`
+- `images/image_04/`
+
+## Run packages and naming convention
+
+Each completed play session lives under `runs/RUN_NNN/`.
+
+Standard files are:
+
+- `FINAL_COLOR_PICKS.md` — final boundary-to-color assignment map
+- `AUDIT_STATE.json` — resolver/live-play state and audit record
+- `FINAL_RENDER.png` — completed rendered output
+- `audit/` — any additional turn-level or intermediate audit artifacts retained from the run
+
+`RUN_001` corresponds to `image_01`.
+
+Future completed images should follow the same naming pattern: `RUN_002`, `RUN_003`, and so on.
 
 ## Current game structure
 
@@ -65,4 +94,4 @@ The established Prismline identity uses the surreal / expressive governing palet
 
 A later plausible update may preserve the same game procedure while changing the governing palette to natural / plausibility-constrained outputs.
 
-The Prismline game definition remains part of the formal setup layer; this folder holds the concrete game assets, resolver, blinding rules, palette records, and per-image materials.
+The Prismline game definition remains part of the formal setup layer; this folder holds the concrete game assets, resolver, blinding rules, palette records, source-image packages, run records, and final rendered outputs.
