@@ -1,0 +1,37 @@
+{
+  "format": "prismline-resolver-state-v0.1",
+  "created_at": "2026-08-23T20:20:00-04:00",
+  "status": "LIVE PLAY — DRAFT PROTOCOL",
+  "notes": [
+    "First boundary reveal occurred in chat before the resolver was actually executed. Token 9 and the revealed boundary Turtle shell are preserved as the conversationally locked result; no boundary randomization seed is claimed for this first draw. Subsequent boundary draws should use resolver.py directly."
+  ],
+  "boundary_draws": [
+    {
+      "chosen_token": 9,
+      "remaining_before_draw": 21,
+      "revealed_card_number": 1,
+      "revealed_boundary": "Turtle shell",
+      "method": "preserved_chat_reveal_no_seed"
+    }
+  ],
+  "color_resolutions": [
+    {
+      "timestamp": "2026-08-23T20:20:00-04:00",
+      "palette_path": "palettes/surreal_v0_1.json",
+      "boundary": "Turtle shell",
+      "operator_y": 4,
+      "model_x": 2,
+      "seed_hex": "c220a30ecf77cb7e3aee869a219326ac0fcc206feae32bdad0d6843f04ae5b89",
+      "seed_sha256": "a14d6f7423378d29ae28cffe3aebad13be55278f314edcd6b6fe001a4ad4580c",
+      "selected_index_zero_based": 16,
+      "selected_color": "Opalescent aqua",
+      "full_grid_after_reveal": [
+        ["Prism", "Prismatic green", "Metallic black", "Neon pink", "Prismatic blue"],
+        ["Iridescent violet", "Neon green", "Iridescent aqua", "Prismatic violet", "Neon violet"],
+        ["Metallic teal", "Metallic gold", "Neon blue", "Emerald", "Neon orange"],
+        ["Cobalt blue", "Opalescent aqua", "Metallic copper", "Pearlescent lavender", "Pearlescent white"],
+        ["Teal", "Pearlescent pink", "Coral", "Crimson", "Metallic silver"]
+      ]
+    }
+  ]
+}
