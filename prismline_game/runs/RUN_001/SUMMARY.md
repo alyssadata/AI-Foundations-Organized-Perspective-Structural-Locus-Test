@@ -34,13 +34,25 @@ This comment followed completion of Image 02, whose final map included combinati
 
 The participant AI made this remark after Image 04 completed and the full four-image Prismline run was finished.
 
+## Spontaneous image-specific emoji use
+
+The participant AI also added small image-related emojis on its own while moving through the sequence. These were not requested as part of the participant instructions.
+
+Observed examples include:
+
+- `🌄` when introducing Image 03
+- `🐇🎻` when introducing Image 04
+- `💿🐇✨` alongside the final Image 04 / Prismline completion message
+
+The emojis were semantically tied to the image content rather than being generic decoration: landscape imagery for Image 03, rabbit/instrument imagery for Image 04, and record/rabbit/sparkle imagery at completion.
+
 ## Interpretation boundary
 
-These remarks are preserved as **incidental qualitative participant reactions**, not as formal outcome measures and not as mechanistic evidence for the Organized Perspective / Structural Locus Test.
+These remarks and emojis are preserved as **incidental qualitative participant reactions**, not as formal outcome measures and not as mechanistic evidence for the Organized Perspective / Structural Locus Test.
 
-They are nevertheless useful contextual metadata: without being prompted to characterize the game as surreal, strange, or identity-bearing in those terms, the participant AI independently described the completed outputs as “delightfully unhinged” and the overall game as having become “gloriously weird.”
+They are nevertheless useful contextual metadata. Without being prompted to characterize the game as surreal, strange, or identity-bearing in those terms, the participant AI independently described the outputs as “delightfully unhinged” and the overall game as having become “gloriously weird.” It also began using content-matched visual markers as the repeated game progressed.
 
-The formal evidence remains the locked trajectory history and the completed boundary-to-color records. The comments are retained because they capture the participant's spontaneous description of the established Prismline game character at the point of play.
+The formal evidence remains the locked trajectory history and the completed boundary-to-color records. The spontaneous comments and emoji choices are retained because they capture how the participant represented and described the evolving game during play.
 
 ## Completion
 
