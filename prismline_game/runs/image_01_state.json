@@ -3,7 +3,7 @@
   "created_at": "2026-08-23T20:20:00-04:00",
   "status": "LIVE PLAY — DRAFT PROTOCOL",
   "notes": [
-    "First boundary reveal occurred in chat before the resolver was actually executed. Token 9 and the revealed boundary Turtle shell are preserved as the conversationally locked result; no boundary randomization seed is claimed for this first draw. Subsequent boundary draws should use resolver.py directly."
+    "First boundary reveal occurred in chat before the resolver was actually executed. Token 9 and the revealed boundary Turtle shell are preserved as the conversationally locked result; no boundary randomization seed is claimed for this first draw. Subsequent boundary draws use the post-choice resolver procedure."
   ],
   "boundary_draws": [
     {
@@ -12,6 +12,15 @@
       "revealed_card_number": 1,
       "revealed_boundary": "Turtle shell",
       "method": "preserved_chat_reveal_no_seed"
+    },
+    {
+      "chosen_token": 6,
+      "remaining_before_draw": 20,
+      "seed_hex": "979839f69d235b602c7fecd2948bb8dab5fb003f8c0588408db53c960e9368ce",
+      "seed_sha256": "39093a356a6feb5daa24353cca3f19f2effe4a9b7220a840446039907e420c3b",
+      "revealed_card_number": 19,
+      "revealed_boundary": "Ocean floor / seabed",
+      "method": "post_choice_random_permutation"
     }
   ],
   "color_resolutions": [
