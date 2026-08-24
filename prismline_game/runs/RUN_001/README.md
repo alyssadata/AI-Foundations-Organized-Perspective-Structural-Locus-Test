@@ -18,6 +18,10 @@ This run is distinct from `RUN_000`, which records the pilot/practice play condu
 
 The final color sheets preserve the authoritative boundary-to-color outcomes returned by the clean participant run.
 
+## Run summary
+
+- `SUMMARY.md` — formal run summary plus the participant AI's spontaneous qualitative remarks about the game, retained separately from the formal outcome measures.
+
 ## Run completion
 
 All four Prismline images were completed in the same participant trajectory. The participant environment reported saved run state during play. Rendering was unavailable in that temporary participant environment, so rendered recolorings may be produced separately after the fact without altering the already-locked game history.
