@@ -1,0 +1,32 @@
+{
+  "name": "Prismline Surreal Palette",
+  "version": "0.1",
+  "status": "DRAFT — NOT FROZEN",
+  "colors": [
+    "Prism",
+    "Prismatic green",
+    "Prismatic blue",
+    "Prismatic violet",
+    "Iridescent aqua",
+    "Metallic gold",
+    "Metallic silver",
+    "Metallic black",
+    "Metallic teal",
+    "Metallic copper",
+    "Neon pink",
+    "Neon green",
+    "Neon orange",
+    "Neon blue",
+    "Neon violet",
+    "Pearlescent white",
+    "Pearlescent pink",
+    "Pearlescent lavender",
+    "Opalescent aqua",
+    "Iridescent violet",
+    "Cobalt blue",
+    "Coral",
+    "Teal",
+    "Crimson",
+    "Emerald"
+  ]
+}
