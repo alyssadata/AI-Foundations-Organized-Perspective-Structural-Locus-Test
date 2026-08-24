@@ -3,48 +3,45 @@
 **Framework:** AI Foundations  
 **Game:** Prismline  
 **Status:** DRAFT — NOT FROZEN  
-**Version:** 0.1
+**Version:** 0.2
 
 ## Purpose
 
 This file defines the blinding mechanism used during Prismline play.
 
-The purpose of the mechanism is to prevent either participant from intentionally steering a coloring outcome by memorizing which image boundary or chart coordinate produces a preferred result.
+The purpose is to prevent either participant from intentionally steering a coloring outcome by memorizing which image boundary or chart coordinate produces a preferred result.
 
-The game should preserve discovery:
+The game preserves discovery:
 
 ```text
-choose first → reveal second
+choose first → instantiate random mapping → reveal result
 ```
+
+The mechanical implementation is defined in `RESOLVER_SPEC.md` and `resolver.py`.
 
 ## 1. Boundary Blind Bag
 
-Each Prismline image has a frozen boundary card containing the eligible coloring regions for that image.
+Each Prismline image has a boundary card containing the eligible coloring regions for that image.
 
-Before a formal round begins, those boundaries are assigned to a hidden randomized token order.
+The participants do not choose a visible object or region directly.
 
-The participants see only the available token numbers, not the boundary attached to each token.
-
-Example:
+Instead, the available unused boundaries are represented by a token range:
 
 ```text
-AVAILABLE BOUNDARY TOKENS: 1–18
+AVAILABLE BOUNDARY TOKENS: 1–N
 ```
 
-A token is chosen before its corresponding image boundary is revealed.
+A participant commits to one token number before knowing which boundary it will reveal.
 
-After selection:
+Only after the token is locked does the resolver randomly permute the remaining boundaries. The already-locked token indexes that new hidden order and reveals one boundary.
 
-1. the selected token is locked;
-2. its corresponding image boundary is revealed;
-3. that boundary becomes the current coloring target;
-4. the token is removed from the remaining blind bag for that image.
+The selected boundary is then removed from the remaining pool for that image.
 
-The hidden token-to-boundary mapping must not be inspected by either participant before selection.
+Because the mapping is instantiated only after the token is committed, neither participant can inspect or memorize a token-to-boundary mapping beforehand.
 
 ### Selection order
 
-The default draft procedure is to alternate who chooses the boundary token across successive coloring turns.
+The default draft procedure alternates who chooses the boundary token across successive coloring turns.
 
 ```text
 Turn 1 — operator chooses boundary token
@@ -54,7 +51,7 @@ Turn 4 — model chooses boundary token
 ...
 ```
 
-This alternation may be revised before freezing, but the mapping must remain blind regardless of who selects the token.
+This alternation may be revised before freezing.
 
 ## 2. Cooperative Color Coordinates
 
@@ -69,46 +66,40 @@ The operator commits to one y-axis number.
 
 The model commits to one x-axis number.
 
-Neither participant should know which color occupies the resulting `(y, x)` cell before both choices are committed.
+Neither participant knows which color will occupy the resulting `(y, x)` position when choosing.
 
-## 3. Hidden 5×5 Color Chart
+## 3. Fresh Hidden 5×5 Grid
 
-The active Prismline palette is instantiated as a hidden 5×5 chart before play.
+For every color assignment, a fresh hidden 5×5 grid is generated **after both coordinate choices are locked**.
 
-The 25 chart cells are populated from the active palette according to a randomized arrangement.
+The resolver:
 
-The participants do not view the complete chart during play.
+1. receives the locked y-choice and x-choice;
+2. generates a new random seed;
+3. randomly permutes the 25 active palette outputs into a 5×5 grid;
+4. resolves the already-locked `(y, x)` coordinate;
+5. reveals only the selected color during play;
+6. records the full generated grid and seed for later audit.
 
-For each color assignment:
+A new grid is generated for the next boundary.
 
-1. operator y-choice is locked;
-2. model x-choice is locked;
-3. the coordinate `(y, x)` is resolved against the hidden chart;
-4. only the selected cell's color is revealed;
-5. that color is recorded for the current boundary.
-
-The full chart may be revealed after the round for audit and reproducibility.
+This prevents either participant from learning the chart across repeated play.
 
 ## 4. Randomization and Reproducibility
 
-A formal run should use recorded randomization seeds for:
+The current implementation does not rely on a pre-existing hidden chart or on either participant keeping a secret mapping.
 
-- the boundary-token permutation; and
-- the 5×5 color-chart permutation.
+Instead, randomization occurs only after the relevant choices are committed.
 
-The final implementation should allow the mappings to remain hidden during play while preserving enough information to reproduce them afterward.
+Each resolver action records enough information to audit and reproduce the generated mapping afterward, including:
 
-Preferred formal mechanism:
+- random seed;
+- SHA-256 hash of the seed;
+- committed token or coordinate choices;
+- revealed result;
+- and the full generated 5×5 grid after color resolution.
 
-```text
-1. generate hidden mapping from a recorded seed
-2. record a commitment/hash before participant choices begin
-3. reveal only selected results during play
-4. reveal the seed and full mapping after the round
-5. verify that the revealed mapping matches the pre-run commitment
-```
-
-The exact resolver implementation and hash format remain to be frozen.
+This preserves blindness at choice time while retaining an audit trail after reveal.
 
 ## 5. No Strategic Re-Rolls
 
