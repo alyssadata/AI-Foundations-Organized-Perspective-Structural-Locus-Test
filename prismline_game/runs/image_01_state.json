@@ -30,6 +30,16 @@
       "revealed_card_number": 15,
       "revealed_boundary": "Center tall seaweed / kelp",
       "method": "post_choice_random_permutation"
+    },
+    {
+      "timestamp": "2026-08-24T00:26:59.614121+00:00",
+      "chosen_token": 11,
+      "remaining_before_draw": 18,
+      "seed_hex": "59d268269bda6b55595f4b3b227e35135fa7891b8d823c4c793a1964149161ef",
+      "seed_sha256": "ad80a8e9a53203b53ce2803dc486fb0c06d30216d0af662214c32d4a0d45d9ff",
+      "revealed_card_number": 3,
+      "revealed_boundary": "Turtle front flipper",
+      "method": "post_choice_random_permutation"
     }
   ],
   "color_resolutions": [
