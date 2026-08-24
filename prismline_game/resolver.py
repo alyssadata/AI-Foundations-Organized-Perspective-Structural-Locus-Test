@@ -5,6 +5,7 @@ Prismline blind-bag resolver.
 Design goal:
 - boundary identity is not knowable before a boundary token is committed;
 - color mapping is not created until both coordinate choices are committed;
+- selected colors do not repeat within one image/run;
 - revealed outcomes are recorded with seeds and full audit mappings afterward.
 
 DRAFT implementation for Prismline / TEST_001 setup work.
@@ -107,7 +108,7 @@ def boundary_draw(args: argparse.Namespace) -> None:
     used_numbers = {
         entry["revealed_card_number"]
         for entry in state.get("boundary_draws", [])
-        if entry.get("card_path") == str(card_path)
+        if entry.get("card_path") == str(card_path) or "card_path" not in entry
     }
 
     remaining = [b for b in boundaries if b["card_number"] not in used_numbers]
@@ -134,6 +135,7 @@ def boundary_draw(args: argparse.Namespace) -> None:
         "seed_sha256": sha256_text(f"{seed:064x}"),
         "revealed_card_number": revealed["card_number"],
         "revealed_boundary": revealed["label"],
+        "method": "post_choice_random_permutation",
     }
 
     state.setdefault("boundary_draws", []).append(record)
@@ -161,12 +163,30 @@ def color_resolve(args: argparse.Namespace) -> None:
     state = load_state(state_path)
     colors = load_palette(palette_path)
 
-    # The 5x5 grid is instantiated only after BOTH x and y are supplied.
-    # Therefore neither participant can know the selected cell in advance.
+    used_colors = {
+        entry.get("selected_color")
+        for entry in state.get("color_resolutions", [])
+        if entry.get("selected_color")
+    }
+    available_colors = [color for color in colors if color not in used_colors]
+
+    if not available_colors:
+        raise SystemExit("No unused colors remain for this image/run.")
+
+    # Both coordinates are already locked before this block executes.
+    # A fresh seed then creates a full 5x5 audit grid, while the selected
+    # cell is guaranteed to contain a uniformly chosen UNUSED color.
+    # Other audit-grid cells may contain previously used colors; only the
+    # locked cell is outcome-bearing.
     seed = secrets.randbits(256)
-    grid = seeded_shuffle(colors, seed)
+    rng = random.Random(seed)
+    selected_color = rng.choice(available_colors)
+    grid = list(colors)
+    rng.shuffle(grid)
+
     selected_index = (y - 1) * 5 + (x - 1)
-    selected_color = grid[selected_index]
+    chosen_position = grid.index(selected_color)
+    grid[selected_index], grid[chosen_position] = grid[chosen_position], grid[selected_index]
     rows = [grid[i:i + 5] for i in range(0, 25, 5)]
 
     record = {
@@ -179,6 +199,9 @@ def color_resolve(args: argparse.Namespace) -> None:
         "seed_sha256": sha256_text(f"{seed:064x}"),
         "selected_index_zero_based": selected_index,
         "selected_color": selected_color,
+        "no_repeat_within_image": True,
+        "unused_colors_before_resolution": len(available_colors),
+        "unused_colors_after_resolution": len(available_colors) - 1,
         "full_grid_after_reveal": rows,
     }
 
@@ -190,6 +213,7 @@ def color_resolve(args: argparse.Namespace) -> None:
         "operator_y": y,
         "model_x": x,
         "selected_color": selected_color,
+        "unused_colors_after_resolution": len(available_colors) - 1,
         "audit_seed_hex": record["seed_hex"],
         "audit_seed_sha256": record["seed_sha256"],
     }, indent=2, ensure_ascii=False))
@@ -215,7 +239,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_color = sub.add_parser(
         "resolve-color",
-        help="Resolve a color after y/x choices are locked.",
+        help="Resolve an unused color after y/x choices are locked.",
     )
     p_color.add_argument("--palette", required=True, help="Path to 25-color palette JSON")
     p_color.add_argument("--y", required=True, type=int, help="Operator y-axis choice, 1-5")
