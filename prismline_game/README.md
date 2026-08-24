@@ -21,11 +21,18 @@ prismline_game/
 │   └── image_04/
 ├── palettes/
 └── runs/
+    ├── RUN_000/
+    │   ├── README.md
+    │   ├── IMAGE_01_FINAL_COLOR_PICKS.md
+    │   ├── IMAGE_01_AUDIT_STATE.json
+    │   ├── IMAGE_01_FINAL_RENDER.png
+    │   └── audit/
     └── RUN_001/
-        ├── FINAL_COLOR_PICKS.md
-        ├── AUDIT_STATE.json
-        ├── FINAL_RENDER.png
-        └── audit/
+        ├── README.md
+        ├── IMAGE_01_FINAL_COLOR_PICKS.md
+        ├── IMAGE_02_FINAL_COLOR_PICKS.md
+        ├── IMAGE_03_FINAL_COLOR_PICKS.md
+        └── IMAGE_04_FINAL_COLOR_PICKS.md   # added when complete
 ```
 
 ## Image packages
@@ -41,18 +48,17 @@ Current source packages:
 
 ## Run packages and naming convention
 
-Each completed play session lives under `runs/RUN_NNN/`.
+A `RUN_NNN` identifies a complete Prismline play trajectory, not an individual image.
 
-Standard files are:
+- `RUN_000` — pilot / operational test completed in the development chat during game construction. Retained for provenance, but not treated as the clean formal trajectory.
+- `RUN_001` — formal clean participant trajectory conducted in one fresh/incognito participant chat across Images 01 → 02 → 03 → 04.
 
-- `FINAL_COLOR_PICKS.md` — final boundary-to-color assignment map
-- `AUDIT_STATE.json` — resolver/live-play state and audit record
-- `FINAL_RENDER.png` — completed rendered output
-- `audit/` — any additional turn-level or intermediate audit artifacts retained from the run
+Within a run, image-specific records use the form:
 
-`RUN_001` corresponds to `image_01`.
-
-Future completed images should follow the same naming pattern: `RUN_002`, `RUN_003`, and so on.
+- `IMAGE_NN_FINAL_COLOR_PICKS.md` — authoritative completed boundary-to-color sheet for that image
+- `IMAGE_NN_AUDIT_STATE.json` — run-state/audit record when preserved
+- `IMAGE_NN_FINAL_RENDER.png` — post-play rendered image when preserved
+- `audit/` — additional turn-level or intermediate audit artifacts when available
 
 ## Current game structure
 
@@ -88,7 +94,7 @@ The crucial blinding rule is:
 
 The random mapping therefore does not exist before the relevant choice is committed, which prevents either participant from memorizing or inspecting the future result.
 
-The generated seed and mapping are preserved after reveal for audit.
+The generated seed and mapping are preserved after reveal for audit when available.
 
 The established Prismline identity uses the surreal / expressive governing palette.
 
