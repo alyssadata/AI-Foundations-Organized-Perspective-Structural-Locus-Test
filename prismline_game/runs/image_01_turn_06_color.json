@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-08-24T00:34:00+00:00",
+  "palette_path": "palettes/surreal_v0_1.json",
+  "boundary": "Center shell-creature body",
+  "operator_y": 1,
+  "model_x": 2,
+  "seed_hex": "908b9c1a032bd7b0fe77d857f0fdeb485ec017080c81a547f3ee60db3e2e5ae6",
+  "seed_sha256": "74b53ada72422deb1c69e8dddb2b29fa4da5e412878a75bde74f4a9e44668285",
+  "selected_index_zero_based": 1,
+  "selected_color": "Iridescent aqua",
+  "no_repeat_within_image": true,
+  "unused_colors_before_resolution": 20,
+  "unused_colors_after_resolution": 19,
+  "resolution_method": "post_choice_seeded_shuffle_reject_if_selected_cell_used",
+  "shuffle_attempts": 1,
+  "full_grid_after_reveal": [
+    ["Metallic gold", "Iridescent aqua", "Neon orange", "Neon green", "Pearlescent white"],
+    ["Prism", "Coral", "Prismatic violet", "Iridescent violet", "Opalescent aqua"],
+    ["Metallic silver", "Prismatic blue", "Prismatic green", "Neon violet", "Emerald"],
+    ["Pearlescent lavender", "Metallic copper", "Metallic teal", "Neon blue", "Metallic black"],
+    ["Teal", "Pearlescent pink", "Crimson", "Cobalt blue", "Neon pink"]
+  ]
+}
